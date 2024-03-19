@@ -15,7 +15,7 @@ class NextcloudUser(HttpUser):
         random.shuffle(self.users_list)
         i = self.users_list.pop()
         self.user = 'user' + '{:d}'.format(i)
-        self.password = 'R4njfkecicgmme'
+        self.password = 'Mj8VldcvKqBsI65'
         self.auth = HTTPBasicAuth(self.user, self.password)
         self.verify_authentication()
 
@@ -28,29 +28,6 @@ class NextcloudUser(HttpUser):
             raise Exception(f"Authentication failed for user {self.user}")
 
 
-
-    @task
-    def upload_large(self):
-        filename = "lotr.mp4"
-        with open("files_test/" + filename, 'rb') as f:
-            response = self.client.put("/remote.php/dav/files/" + self.user + "/" + filename,
-                                       auth=self.auth, data=f, name="/remote.php/dav/files/[user]/lotr.mp4")
-	
-        if response.status_code not in (201, 204):
-            with open("/mnt/locust/output.txt", "a") as f:
-                f.write(f"Error during PUT request: {response.status_code} for user {self.user}.\n")
-            return
-
-        
-        self.client.get("/remote.php/dav/files/" + self.user + "/" + filename,
-                        auth=self.auth, name="/remote.php/dav/files/[user]/lotr.mp4")
-        
-
-        self.client.delete("/remote.php/dav/files/" + self.user + "/" + filename,
-                        auth=self.auth, name="/remote.php/dav/files/[user]/lotr.mp4")
-                        
-"""
-
     @task
     def propfind(self):
         try:
@@ -61,7 +38,7 @@ class NextcloudUser(HttpUser):
                 f.write(f"Error during PROPFIND request: {e} for user {self.user}.\n")
                 
 
-
+"""
 
     @task
     def upload_small(self):
@@ -81,6 +58,7 @@ class NextcloudUser(HttpUser):
 
         self.client.delete("/remote.php/dav/files/" + self.user + "/" + filename,
                            auth=self.auth, name="/remote.php/dav/files/[user]/picture.png")
+
 
 
 
@@ -104,6 +82,26 @@ class NextcloudUser(HttpUser):
                         auth=self.auth, name="/remote.php/dav/files/[user]/dataset.dat")
 
 
+    @task
+    def upload_large(self):
+        filename = "lotr.mp4"
+        with open("files_test/" + filename, 'rb') as f:
+            response = self.client.put("/remote.php/dav/files/" + self.user + "/" + filename,
+                                       auth=self.auth, data=f, name="/remote.php/dav/files/[user]/lotr.mp4")
+	
+        if response.status_code not in (201, 204):
+            with open("/mnt/locust/output.txt", "a") as f:
+                f.write(f"Error during PUT request: {response.status_code} for user {self.user}.\n")
+            return
+
+        
+        self.client.get("/remote.php/dav/files/" + self.user + "/" + filename,
+                        auth=self.auth, name="/remote.php/dav/files/[user]/lotr.mp4")
+        
+
+        self.client.delete("/remote.php/dav/files/" + self.user + "/" + filename,
+                        auth=self.auth, name="/remote.php/dav/files/[user]/lotr.mp4")
+                        
 
 
 """

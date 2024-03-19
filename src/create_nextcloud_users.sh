@@ -2,7 +2,7 @@
 
 URL="http://localhost:8081/ocs/v1.php/cloud/users"
 USERNAME="christian"
-PASSWORD="R4njfkecicgmme"
+PASSWORD="Mj8VldcvKqBsI65"
 PASSWORD_ENCODED="abc123abc!" 
 
 
