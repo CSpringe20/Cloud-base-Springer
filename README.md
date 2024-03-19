@@ -6,7 +6,7 @@ A repository dedicated for the final assignment of the Cloud Computing course.
 
 The exercise was about deploying, explaining and testing a local cloud-based storage system.
 The proposed solution is a containerized instance of Nextcloud, linked to a MariaDB database.
-All the tests were conducted with the softwere Locust. In the file `SPRINGER_repor.pdf` you can find all the details and explanations.
+All the tests were conducted with the softwere Locust. In the file `SPRINGER_report.pdf` you can find all the details and explanations.
 
 ## How do deploy the system?
 
